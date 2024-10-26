@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+class vehicle
+{
+public:
+virtual void createvehicle()=0;
+};
+class car:public vehicle
+{
+    void createvehicle()
+    {
+        cout<<"car created"<<endl;
+    }
+};
+class Bike:public vehicle
+{
+    void createvehicle()
+    {
+        cout<<"bike created"<<endl;
+    }
+};
+
+class vehiclefacotry
+{
+public:
+  static vehicle* factory(string & s)
+  {
+    vehicle *v (nullptr);
+    if(s=="car")
+    {
+        v = new car();
+    }
+    else if(s=="bike")
+    {
+        v = new Bike();
+    }
+    return v;
+  }
+};
+
+int main()
+{
+    cout<<"enter vehicle"<<endl;
+    string s;
+    cin>>s;
+   vehicle * v= vehiclefacotry::factory(s);
+   v->createvehicle();
+   return 0;
+}
